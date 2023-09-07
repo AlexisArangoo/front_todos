@@ -1,0 +1,22 @@
+.app{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to top, #05093a, #01020c);
+    color: white;
+}
+
+.app__header{
+    width: 100%;
+    padding: 1em;
+}
+
+.app__header--title{
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.app__body{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
