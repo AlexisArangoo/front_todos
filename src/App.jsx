@@ -5,27 +5,20 @@ import NewTodo from './components/NewTodo'
 import useFetch from './hooks/useFetch'
 
 function App() {
+  const [onGet, setOnGet] = useState(false)
+  
 
-  const [todos, allTodos, createTodo, deleteTodo, upDateTodo] = useFetch()
+  const [todos, allTodos, createTodo, deleteTodo, upDateTodo] = useFetch(onGet)
 
   const [onUpDate, setOnUpDate] = useState()
-  const [onGet, setOnGet] = useState(false)
 
   useEffect(() => {
     allTodos('/todos/false')
   }, [])
   
-
-  // useEffect(() => {
-  //   if (onGet) {
-  //       allTodos('/todos/false')
-  //       setOnGet(false)
-  //     } 
-  // }, [onGet])
   
   const handletask = (route) => { 
     allTodos(route)
-    console.log(todos)
   }
   
   return (
@@ -40,7 +33,6 @@ function App() {
         onUpDate={onUpDate}
         upDateTodo={upDateTodo}
         setOnUpDate={setOnUpDate}
-        onGet={onGet}
         />
         <AllTodos
         todos={todos}

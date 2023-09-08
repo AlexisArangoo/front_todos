@@ -37,12 +37,6 @@
     transition: transform 200ms ease-in-out;
 }
 
-.task__info:hover{
-    transform: scale(1.01);
-    text-shadow: -0.2em 0.1em #0e0463;
-    z-index: 1;
-}
-
 .task__name{
     font-size: 1.5rem;
 }
@@ -77,22 +71,23 @@
 .task__list{
     position: absolute;
     right: 0.5em;
-    bottom: -5.5em;
+    bottom: -5.3em;
     background-color: #07060f;
     box-shadow: 0 0.1em 0.5em #302b5f;
-    padding: 1em;
     display: flex;
     flex-direction: column;
-    gap: 1em;
     transform: scale(0);
     transition: transform 0.3s ease-in-out;
     z-index: 2;
 }
 
-/* .task__info:hover .task__list{
-    background-color: #07060f;
-    z-index: 1;  
-} */
+.task__item{
+    padding: 0.7em 1em;
+}
+
+.task__item:hover{
+    background-color: #aaa;
+}
 
 .task__list.onmenu{
     transform: scale(1);

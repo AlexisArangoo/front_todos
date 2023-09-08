@@ -5,12 +5,22 @@ import TodoCard from "./TodoCard";
 const AllTodos = ({ todos, deleteTodo, setOnUpDate, setOnGet, onGet, upDateTodo, handletask}) => {
 
   const totalCard = todos?.length
+
+  const task = () => { 
+    handletask('/todos/false')
+    setOnGet(false)
+   }
+  
+   const taskCompleted = () => { 
+    handletask('/todos/true')
+    setOnGet(true)
+   }
   
   return (
     <article className="task">
       <header className="task__header">
-        <button className={`task__header--button ${onGet ? '' : 'onget'}`} onClick={() => handletask('/todos/false')}>TASK</button>
-        <button className={`task__header--button ${onGet ? 'onget' : ''}`} onClick={() => handletask('/todos/true')}>TASK COMPLETED</button>
+        <button className={`task__header--button ${onGet ? '' : 'onget'}`} onClick={task}>TASK</button>
+        <button className={`task__header--button ${onGet ? 'onget' : ''}`} onClick={taskCompleted}>TASK COMPLETED</button>
       </header>
 
       {
@@ -26,7 +36,6 @@ const AllTodos = ({ todos, deleteTodo, setOnUpDate, setOnGet, onGet, upDateTodo,
             deleteTodo={deleteTodo}
             setOnUpDate={setOnUpDate}
             upDateTodo={upDateTodo}
-            handletask={handletask}
             />
           ))
           )

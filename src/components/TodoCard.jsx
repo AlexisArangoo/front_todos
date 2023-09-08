@@ -1,34 +1,45 @@
 import React, { useState } from 'react'
-import AllTodos from './AllTodos';
+import './styles/TodoCard.css'
 
-const TodoCard = ({todo, deleteTodo, setOnUpDate, upDateTodo, handletask}) => {
+const TodoCard = ({todo, deleteTodo, setOnUpDate, upDateTodo}) => {
 
-    const [onMenu, setOnMenu] = useState(false);
+  const [onMenu, setOnMenu] = useState(false);
+  const [onModalTask, setOnModalTask] = useState(false)
 
-    const handleCompleted = () => {
+    const handleCompleted = (e) => {
+      e.stopPropagation()
       const data = {
         completed: !todo.completed
       }
       upDateTodo('/todos', data, todo.id)
-      handletask('/todos/true')
     };
     
-    const handleDelete = () => { 
+    const handleDelete = (e) => { 
+      e.stopPropagation()
       deleteTodo('/todos', todo.id)
-      handletask('/todos/true')
      }
 
-    const handleUpDate = () => { 
+    const handleUpDate = (e) => { 
+      e.stopPropagation()
       setOnUpDate(todo)
-      handletask('/todos/true')
     }
+
+    const handlemodal = (e) => { 
+      e.stopPropagation()
+      setOnModalTask(false)
+     }
+
+    const handleMenu = (e) => { 
+      e.stopPropagation()
+      setOnMenu(!onMenu)
+     }
   return (
-    <div className="task__info">
+    <div className="task__info" onClick={() => setOnModalTask(true)}>
           <span className="task__name">{todo.title}</span>
           <span className="task__actions">
             <span
               className="task__action--punt"
-              onClick={() => setOnMenu(!onMenu)}
+              onClick={handleMenu}
             >
               . . .
             </span>
@@ -56,8 +67,16 @@ const TodoCard = ({todo, deleteTodo, setOnUpDate, upDateTodo, handletask}) => {
                 </>
               )
             }
-            
           </span>
+          <div className={`task__container__modal ${onModalTask ? 'onmodaltask' : ''}`} onClick={handlemodal}>
+            <section className='task__modal' onClick={e => e.stopPropagation()}>
+              <h2 className='task__modal__title'>{todo.title}</h2>
+
+              <article className='task__modal__description'>
+                {todo.description}
+              </article>
+            </section>
+          </div>
         </div>
   )
 }
